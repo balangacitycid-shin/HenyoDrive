@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Henyo Drive</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0033A0;--gold:#D4AF37;--bg:#F3F6FC;--card:#fff;--ink:#14213d;--mut:#5b6785;--line:#e1e7f3;--sh:0 2px 10px rgba(0,51,160,.08);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#131c31;--ink:#e8edf9;--mut:#9aa8c7;--line:#243253;--sh:0 2px 10px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1220;--card:#131c31;--ink:#e8edf9;--mut:#9aa8c7;--line:#243253;--sh:0 2px 10px rgba(0,0,0,.4);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(70px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:Sora,Inter,sans-serif;margin:0}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--blue);color:#fff;border-bottom:3px solid var(--gold)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+.bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 0}
+.logo{font:800 1.35rem Sora;display:flex;align-items:center;gap:8px}.logo i{font-style:normal;background:var(--gold);color:var(--blue);border-radius:10px;padding:2px 8px}
+.tag{font-size:.72rem;opacity:.85;max-width:300px;line-height:1.3}
+nav{margin-left:auto;display:flex;gap:2px;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;padding:7px 12px;border-radius:8px;font-weight:500;font-size:.92rem}nav a:hover,nav a:focus-visible{background:rgba(255,255,255,.16);outline:2px solid var(--gold)}
+.hero{background:linear-gradient(135deg,#0033A0,#001f66);color:#fff;padding:64px 0;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-90px;top:-90px;width:340px;height:340px;border-radius:50%;border:44px solid rgba(212,175,55,.22)}
+.hero h2{font-size:clamp(1.9rem,5vw,3rem);max-width:700px}.hero p{max-width:620px;opacity:.9;font-size:1.08rem;margin:14px 0 26px}
+.btn{display:inline-block;background:var(--gold);color:#0b1b4d;font-weight:700;padding:13px 26px;border-radius:12px;text-decoration:none;border:0;cursor:pointer;font-size:1rem;box-shadow:0 4px 14px rgba(0,0,0,.25);transition:.2s}.btn:hover{transform:translateY(-2px)}
+section{padding:42px 0}.sec h2{font-size:1.6rem;color:var(--blue)}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .sec h2{color:var(--gold)}}
+.sub{color:var(--mut);margin:4px 0 22px}
+.search{width:100%;max-width:520px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1rem;margin-bottom:18px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh);padding:20px;transition:.2s;color:inherit;text-decoration:none;display:block}
+a.card:hover,.card.h:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,51,160,.18);border-color:var(--gold)}
+.ico{font-size:2rem;width:54px;height:54px;border-radius:14px;background:rgba(0,51,160,.09);display:grid;place-items:center;margin-bottom:12px}
+.card h3{font-size:1.02rem}.card small{color:var(--mut)}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.links a{font-size:.82rem;font-weight:600;text-decoration:none;color:var(--blue);background:rgba(212,175,55,.2);padding:5px 10px;border-radius:8px}
+.big{grid-column:span 2}@media(max-width:560px){.big{grid-column:auto}}
+.soon{border-style:dashed;opacity:.9}
+.drop{border:2px dashed var(--blue);border-radius:16px;padding:22px;text-align:center;background:var(--card);cursor:pointer;margin-bottom:18px}.drop.on{background:rgba(212,175,55,.15)}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.filters select{padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);flex:1 1 150px}
+.kpis{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:18px}
+.kpi b{display:block;font:800 2rem Sora;color:var(--blue)}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .kpi b{color:var(--gold)}}
+.charts{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-bottom:16px}
+.cv{position:relative;height:260px}
+.gauge{width:150px;height:150px;border-radius:50%;margin:8px auto;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--p)*1%),var(--line) 0)}
+.gauge span{width:112px;height:112px;border-radius:50%;background:var(--card);display:grid;place-items:center;font:800 1.6rem Sora}
+.pb{margin:9px 0;font-size:.85rem}.pb div{height:8px;border-radius:6px;background:var(--line);margin-top:3px;overflow:hidden}.pb i{display:block;height:100%;background:var(--blue)}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}th{color:var(--mut);font-weight:600}
+.empty{color:var(--mut);text-align:center;padding:90px 10px;font-size:.9rem}
+footer{background:var(--blue);color:#fff;border-top:4px solid var(--gold);padding:34px 0;text-align:center}footer h3{color:var(--gold)}footer p{margin:6px 0;opacity:.9}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+</style></head><body>
+<header><div class="wrap bar"><div class="logo"><i>H</i>Henyo Drive</div><div class="tag">Centralized Repository for Bawat Balangueño Henyo Programs</div>
+<nav aria-label="Main"><a href="#home">Home</a><a href="#resources">Resources</a><a href="#monitoring">Monitoring</a><a href="#proposals">Proposals</a><a href="#reports">Reports</a><a href="#templates">Templates</a></nav></div></header>
+<main>
+<div class="hero" id="home"><div class="wrap"><h2>Welcome to Henyo Drive</h2><p>A centralized platform for organizing, monitoring, and accessing BBH documents, reports, templates, proposals, and monitoring tools.</p><a class="btn" href="#resources">Access Repository</a></div></div>
+<section class="sec" id="resources"><div class="wrap"><h2>📁 Resource Dashboard</h2><p class="sub">Open the SharePoint folders and files of the BBH repository.</p>
+<input class="search" id="gs" type="search" placeholder="🔍 Search resources, schools, categories…" aria-label="Global search">
+<div class="grid" id="rg"></div></div></section>
+<section class="sec" id="storyboard" style="background:rgba(0,51,160,.04)"><div class="wrap"><h2>BBH Data Storyboard</h2><p class="sub" id="src"></p>
+<div class="drop" id="dz" tabindex="0" role="button">📥 <b>Drag &amp; drop an Excel file (.xlsx)</b> or click to upload<br><small id="msg">Dashboard refreshes instantly. Expected columns: School, District, Year, Status, Category, Month (or the BBH program-list format).</small><input type="file" id="fi" accept=".xlsx,.xls" hidden></div>
+<div class="filters"><select id="fs" aria-label="School"></select><select id="fd" aria-label="District"></select><select id="fy" aria-label="Year"></select><select id="ft" aria-label="Status"></select></div>
+<div class="kpis" id="kp"></div>
+<div class="charts"><div class="card"><h3>Schools per District</h3><div class="cv"><canvas id="c1"></canvas></div></div><div class="card"><h3>Submitted vs Approved Proposals</h3><div class="cv"><canvas id="c2"></canvas></div></div>
+<div class="card"><h3>Status Distribution</h3><div class="cv"><canvas id="c3"></canvas></div></div><div class="card"><h3>Proposal Categories</h3><div class="cv"><canvas id="c4"></canvas></div></div>
+<div class="card"><h3>Monthly Monitoring Progress</h3><div class="cv"><canvas id="c5"></canvas></div></div>
+<div class="card"><h3>Completion Rate</h3><div class="gauge" id="gg"><span id="gv">0%</span></div><h3 style="font-size:.95rem;margin-top:10px">School compliance</h3><div id="cmp"></div></div></div>
+<div class="card"><h3>📋 BBH Program Submissions Overview</h3><div class="tw" style="max-height:560px;overflow-y:auto"><table><thead><tr><th>#</th><th>School</th><th>Submitted</th><th>Approved</th><th>Submission rate</th></tr></thead><tbody id="lb"></tbody></table></div></div>
+</div></section>
+<section class="sec" id="monitoring"><div class="wrap"><h2>Monitoring, Proposals, Reports &amp; Templates</h2><p class="sub">Quick routes to the sections above: <a href="#resources">Monitoring cards</a> · <a href="#resources">Proposals cards</a> · <a href="#storyboard">Reports analytics</a> · <a href="#templates">Templates</a>.</p><div id="proposals"></div><div id="reports"></div></div></section>
+</main>
+<footer><div class="wrap"><h3>Henyo Drive Division Repository and Monitoring Hub</h3><p>Department of Education · SDO Balanga City</p><p><em>“Empowering schools to track, manage, and strengthen BBH initiatives through accessible digital resources and evidence-based monitoring.”</em></p><p>© 2025 Henyo Drive. All Rights Reserved.</p></div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const S='https://depedph.sharepoint.com/:';
+const R=[
+{i:'📊',t:'Monitoring of BBH SY 2026-2027',d:'Excel file & folder',big:1,l:[['Excel Monitoring File',S+'x:/s/HenyoDrive/IQBolJV6ThShRpAaNRUvJ-xxAWeYMTLNK1l38wXtXlO0uhw?e=HQt3kv'],['Folder',S+'f:/s/HenyoDrive/IgBToQWCLekCQaCa20ogczYFAWlHmNT454ymcNp6uGU4hUY?e=W7Cdy5']]},
+{i:'📁',t:'BBH ACR',l:[['Open folder',S+'f:/s/HenyoDrive/IgAY7CaGv362Q43l-n5htuqQAc4X2BhZnycsf1Z_wSZQoUU?e=rUbeY2']]},
+{i:'✅',t:'BBH Approved Proposals',l:[['Open folder',S+'f:/s/HenyoDrive/IgBZVv5qul5IT6eoQ2rwehwfASHLe9AkCCM2iZ1lwx7LlQw?e=u8Fode']]},
+{i:'📚',t:'BBH Compilation 2025',l:[['Open folder',S+'f:/s/HenyoDrive/IgCFBWOl30jwSaU18TK4w6plAdjoN9Yg9DqMKr-zVNUyvsA?e=sXaEcy']]},
+{i:'📄',t:'BBH Memo',l:[['Open folder',S+'f:/s/HenyoDrive/IgCIZYyfTKdlR7iOWR2xxtlgAe9EdAfYEeMpF1_xxHr4k7g?e=FmMYX1']]},
+{i:'📈',t:'BBH Monitoring Tool',l:[['Open folder',S+'f:/s/HenyoDrive/IgB6IxyFJOZxRbuytQdv58RUAflV4sPezHanM1L1cJeADgY?e=ncLUMJ']]},
+{i:'📂',t:'Submitted Proposals',l:[['Open folder',S+'f:/s/HenyoDrive/IgDofvV4Tf2qSaUcBlsWycxFAaI9rA4lvNC5cviSTrvEY74?e=uDjsrx']]},
+{i:'📝',t:'Templates for BBH',d:'Reserved for templates and future resources',soon:1,id:'templates'}];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function renderRes(q=''){q=q.toLowerCase();const m=R.filter(r=>(r.t+(r.d||'')).toLowerCase().includes(q));
+rg.innerHTML=m.map(r=>r.l?`<div class="card h${r.big?' big':''}"><div class="ico">${r.i}</div><h3>${r.i} ${esc(r.t)}</h3>${r.d?`<small>${r.d}</small>`:''}<div class="links">${r.l.map(x=>`<a href="${x[1]}" target="_blank" rel="noopener">${x[0]} ↗</a>`).join('')}</div></div>`
+:`<div class="card h soon" id="${r.id}"><div class="ico">${r.i}</div><h3>${r.i} ${esc(r.t)}</h3><small>${r.d}</small><div class="links"><a href="#templates" style="pointer-events:none">Coming soon</a></div></div>`).join('')||'<p class="sub">No matching resources.</p>'}
+// ---- data ----
+const DEF=[["Bagong Silang ES", "Music & Art"], ["Bagong Silang ES", "Music & Art"], ["Balanga ES", "Co-curricular"], ["Balanga ES", "Sports"], ["Balanga ES", "Co-curricular"], ["Balanga ES", "Music & Art"], ["Balanga ES", "Music & Art"], ["Balanga ES", "Music & Art"], ["Balanga ES", "Co-curricular"], ["Balanga ES", "Co-curricular"], ["Balanga ES", "Sports"], ["Balanga ES", "Co-curricular"], ["Balanga ES", "Music & Art"], ["Balanga ES", "Co-curricular"], ["Bani IS", "Sports"], ["Bo. Central ES", "Sports"], ["Cabog Cabog IS", "Co-curricular"], ["Cabog Cabog IS", "SNED-Inclusive"], ["Cabog Cabog IS", "Co-curricular"], ["Cabog Cabog IS", "Co-curricular"], ["Cabog Cabog IS", "Co-curricular"], ["Cataning IS", "Music & Art"], ["Cataning IS", "Co-curricular"], ["Cataning IS", "Co-curricular"], ["Cataning IS", "Co-curricular"], ["Cataning IS", "Co-curricular"], ["Cataning IS", "Co-curricular"], ["Cataning IS", "Sports"], ["Cupang IS", "Co-curricular"], ["Cupang IS", "Sports"], ["Cupang IS", "Co-curricular"], ["Cupang IS", "Music & Art"], ["Cupang IS", "Uncategorized"], ["Cupang IS", "Uncategorized"], ["Cupang IS", "Uncategorized"], ["G.L. David IS", "Sports"], ["G.L. David IS", "Sports"], ["G.L. David IS", "Uncategorized"], ["M. delos Reyes ES", "Sports"], ["Our Lady of Lourdes ES", "Sports"], ["Our Lady of Lourdes ES", "Music & Art"], ["Puerto Rivas ES", "Music & Art"], ["Puerto Rivas ES", "Sports"], ["T. Camacho ES", "Music & Art"], ["Tanato IS", "Music & Art"], ["Tanato IS", "Sports"], ["Tanato IS", "Sports"], ["Tanato IS", "Co-curricular"], ["Tanato IS", "Co-curricular"], ["Tenejero IS", "Co-curricular"], ["Tenejero IS", "Co-curricular"], ["Tenejero IS", "Co-curricular"], ["Tenejero IS", "Co-curricular"], ["Tenejero IS", "Co-curricular"], ["Tenejero IS", "Co-curricular"], ["Tortugas IS", "Co-curricular"], ["Tortugas IS", "Co-curricular"], ["Tortugas IS", "Co-curricular"], ["Tuyo IS", "Sports"], ["Tuyo IS", "Co-curricular"], ["Tuyo IS", "Sports"], ["Tuyo IS", "Music & Art"], ["BNHS-JHS", "Co-curricular"], ["BNHS-JHS", "Co-curricular"], ["BNHS-JHS", "Music & Art"], ["BNHS-JHS", "Music & Art"], ["BNHS-JHS", "Music & Art"], ["BNHS-JHS", "Music & Art"], ["BNHS-JHS", "Music & Art"], ["BNHS-SHS", "Music & Art"], ["BNHS-SHS", "Co-curricular"], ["BNHS-SHS", "Co-curricular"], ["BNHS-SHS", "Co-curricular"], ["BNHS-SHS", "Co-curricular"], ["BNHS-SHS", "Co-curricular"], ["BNHS-SHS", "Co-curricular"], ["BNHS-SHS", "Uncategorized"], ["BNHS-SHS", "Uncategorized"], ["COBNHS-JHS", "Music & Art"], ["COBNHS-JHS", "Music & Art"], ["COBNHS-JHS", "Co-curricular"], ["COBNHS-JHS", "Co-curricular"], ["COBNHS-JHS", "Co-curricular"], ["COBNHS-JHS", "Co-curricular"], ["COBNHS-JHS", "Co-curricular"], ["COBNHS-JHS", "Sports"], ["COBNHS-JHS", "Co-curricular"], ["COBNHS-SHS", "Uncategorized"], ["COBNHS-SHS", "Co-curricular"], ["COBNHS-SHS", "Uncategorized"], ["COBNHS-SHS", "Co-curricular"], ["COBNHS-SHS", "Music & Art"], ["COBNHS-SHS", "Co-curricular"], ["COBNHS-SHS", "Co-curricular"], ["COBNHS-SHS", "Co-curricular"], ["COBNHS-SHS", "Co-curricular"], ["COBNHS-SHS", "Music & Art"], ["COBNHS-SHS", "Co-curricular"], ["COBNHS-SHS", "Uncategorized"], ["COBNHS-SHS", "Uncategorized"], ["COBNHS-SHS", "Uncategorized"], ["COBNHS-SHS", "Uncategorized"], ["1 Bataan Village HS", "Music & Art"], ["Dangcol High School", "Sports"], ["Dangcol High School", "Music & Art"], ["Dangcol High School", "Co-curricular"], ["ILRC", "Co-curricular"], ["E. Bernabe", "Co-curricular"], ["MP. Cuaderno", "Co-curricular"], ["MP. Cuaderno", "Co-curricular"], ["MP. Cuaderno", "Co-curricular"], ["MP. Cuaderno", "Co-curricular"], ["MP. Cuaderno", "Co-curricular"], ["BALSCI", "Co-curricular"], ["BALSCI", "Sports"], ["BALSCI", "Co-curricular"], ["BALSCI", "Co-curricular"], ["BALSCI", "Co-curricular"], ["BALSCI", "Co-curricular"], ["BALSCI", "Co-curricular"], ["BALSCI", "Uncategorized"]];let ALL=DEF.map(([s,c])=>({school:s,district:'Not specified',year:'2026-2027',status:'Submitted',category:c,month:''}));let srcName='BBH_2026_2027.xlsx (built-in)';
+const charts={};const PAL=['#0033A0','#D4AF37','#4a79d8','#8a6d12','#7fa0e8','#b8932b'];
+const sets=['fs','fd','fy','ft'],keys=['school','district','year','status'],lab=['All schools','All districts','All years','All statuses'];
+function fillFilters(){sets.forEach((id,i)=>{const el=document.getElementById(id),cur=el.value;const v=[...new Set(ALL.map(r=>r[keys[i]]).filter(Boolean))].sort();el.innerHTML=`<option value="">${lab[i]}</option>`+v.map(x=>`<option>${esc(x)}</option>`).join('');el.value=v.includes(cur)?cur:''})}
+const cnt=(a,f)=>a.reduce((o,r)=>{const k=f(r);o[k]=(o[k]||0)+1;return o},{});
+const isA=r=>/approv/i.test(r.status),isD=r=>/accomp|complet|done/i.test(r.status);
+function mk(id,type,labels,sets,opt={}){charts[id]&&charts[id].destroy();const cv=document.getElementById(id);
+if(!labels.length){cv.parentNode.classList.add('e');}charts[id]=new Chart(cv,{type,data:{labels,datasets:sets},options:{maintainAspectRatio:false,plugins:{legend:{display:sets.length>1||type==='doughnut',labels:{color:getComputedStyle(document.body).color}}},scales:type==='doughnut'?{}:{x:{ticks:{color:'#8a97b5'}},y:{beginAtZero:true,ticks:{color:'#8a97b5',precision:0}}},...opt}})}
+function render(){const g=gs.value.toLowerCase();
+const D=ALL.filter(r=>keys.every((k,i)=>!document.getElementById(sets[i]).value||r[k]===document.getElementById(sets[i]).value)&&(!g||Object.values(r).join(' ').toLowerCase().includes(g)));
+const sc=new Set(D.map(r=>r.school)),ap=D.filter(isA).length,ac=D.filter(isD).length,rate=D.length?Math.round((ap+ac)/D.length*100):0;
+kp.innerHTML=[['🏫','Total Schools Monitored',sc.size],['✅','Total Approved Proposals',ap],['📂','Submitted Proposals',D.length],['📋','Accomplished Reports',ac],['🎯','Completion Rate',rate+'%']].map(k=>`<div class="card kpi">${k[0]}<b>${k[2]}</b><small>${k[1]}</small></div>`).join('');
+const dd=Object.entries(cnt([...new Map(D.map(r=>[r.school,r])).values()],r=>r.district));
+mk('c1','bar',dd.map(x=>x[0]),[{label:'Schools',data:dd.map(x=>x[1]),backgroundColor:'#0033A0',borderRadius:6}]);
+mk('c2','bar',['Submitted','Approved'],[{label:'Proposals',data:[D.length,ap],backgroundColor:['#0033A0','#D4AF37'],borderRadius:6}]);
+const st=Object.entries(cnt(D,r=>r.status));mk('c3','doughnut',st.map(x=>x[0]),[{data:st.map(x=>x[1]),backgroundColor:PAL}]);
+const ct=Object.entries(cnt(D,r=>r.category));mk('c4','doughnut',ct.map(x=>x[0]),[{data:ct.map(x=>x[1]),backgroundColor:PAL}]);
+const mo=Object.entries(cnt(D.filter(r=>r.month),r=>r.month)).sort((a,b)=>(+new Date(a[0]+' 1 2000')||0)-(+new Date(b[0]+' 1 2000')||0));
+mk('c5','line',mo.map(x=>x[0]),[{label:'Monitored',data:mo.map(x=>x[1]),borderColor:'#0033A0',backgroundColor:'rgba(212,175,55,.3)',fill:true,tension:.3}]);
+c5.parentNode.querySelector('.empty')?.remove();if(!mo.length)c5.parentNode.insertAdjacentHTML('beforeend','<div class="empty" style="position:absolute;inset:0">No Month column in this data. Upload a file with Month to see progress.</div>');
+gg.style.setProperty('--p',rate);gv.textContent=rate+'%';
+const by={};D.forEach(r=>{const o=by[r.school]||(by[r.school]={n:0,a:0});o.n++;if(isA(r)||isD(r))o.a++});
+const rows=Object.entries(by).sort((a,b)=>b[1].n-a[1].n||b[1].a-a[1].a);
+cmp.innerHTML=rows.slice(0,6).map(([s,o])=>{const p=Math.round(o.a/o.n*100);return`<div class="pb">${esc(s)} <b>${p}%</b><div><i style="width:${p}%"></i></div></div>`}).join('')||'<small>No data</small>';
+lb.innerHTML=rows.map(([s,o],i)=>`<tr><td>${i+1}</td><td>${esc(s)}</td><td>${o.n}</td><td>${o.a}</td><td>${Math.round(o.a/o.n*100)}%</td></tr>`).join('')||'<tr><td colspan=5>No data</td></tr>';
+src.textContent='Source: '+srcName+' · '+D.length+' records shown';renderRes(g)}
+// ---- Excel ----
+const pick=(o,re)=>{const k=Object.keys(o).find(k=>re.test(k.trim()));return k?String(o[k]??'').trim():''};
+function load(buf,name){try{const wb=XLSX.read(buf,{type:'array'});const ws=wb.Sheets[wb.SheetNames[0]];const a=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
+const hi=a.findIndex(r=>r.some(c=>/^school/i.test(String(c).trim())));if(hi<0)throw 'No "School" column found';
+const h=a[hi].map(x=>String(x).trim());const rows=a.slice(hi+1).map(r=>Object.fromEntries(h.map((k,i)=>[k||'c'+i,r[i]])));let out=[];
+const cats=h.filter(k=>/co-?cu|music|sport|sned/i.test(k));
+if(cats.length&&h.some(k=>/^title/i.test(k))){let s='';rows.forEach(r=>{if(r.SCHOOL)s=String(r.SCHOOL).trim();const t=String(r.TITLE||'').trim();if(!t||/^additional/i.test(t))return;const c=cats.find(k=>String(r[k]).trim())||'Uncategorized';out.push({school:s,district:'Not specified',year:'2026-2027',status:'Submitted',category:c,month:''})})}
+else{let s='';rows.forEach(r=>{const sn=pick(r,/^school/i)||s;if(!sn)return;s=sn;out.push({school:sn,district:pick(r,/district/i)||'Not specified',year:pick(r,/year|sy/i)||'Not specified',status:pick(r,/status/i)||'Submitted',category:pick(r,/categ|type|program/i)||'Uncategorized',month:pick(r,/month/i)})})}
+if(!out.length)throw 'No usable rows';ALL=out;srcName=name;sets.forEach(i=>document.getElementById(i).value='');fillFilters();render();msg.textContent='✅ Loaded '+out.length+' records from '+name}
+catch(e){msg.textContent='⚠️ Could not read file: '+e}}
+function file(f){f&&f.arrayBuffer().then(b=>load(b,f.name))}
+dz.onclick=()=>fi.click();dz.onkeydown=e=>{if(e.key==='Enter')fi.click()};fi.onchange=()=>file(fi.files[0]);
+dz.ondragover=e=>{e.preventDefault();dz.classList.add('on')};dz.ondragleave=()=>dz.classList.remove('on');dz.ondrop=e=>{e.preventDefault();dz.classList.remove('on');file(e.dataTransfer.files[0])};
+sets.forEach(i=>document.getElementById(i).onchange=render);gs.oninput=render;
+fillFilters();render();
+</script></body></html>
