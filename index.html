@@ -41,6 +41,7 @@ a.card:hover,.card.h:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgb
 .tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}th{color:var(--mut);font-weight:600}
 .empty{color:var(--mut);text-align:center;padding:90px 10px;font-size:.9rem}
 footer{background:var(--blue);color:#fff;border-top:4px solid var(--gold);padding:34px 0;text-align:center}footer h3{color:var(--gold)}footer p{margin:6px 0;opacity:.9}
+.mo{position:fixed;inset:0;background:rgba(5,12,40,.6);display:none;place-items:center;z-index:50;padding:18px}.mo.on{display:grid}.mb{background:var(--card);border-top:5px solid var(--gold);border-radius:18px;max-width:420px;width:100%;padding:28px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4);position:relative}.mb h3{color:var(--blue);margin:8px 0}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .mb h3{color:var(--gold)}}.mb p{color:var(--mut);margin:0 0 18px}.mx{position:absolute;right:12px;top:8px;background:none;border:0;font-size:1.6rem;color:var(--mut);cursor:pointer}.ml{display:block;margin-top:10px;color:var(--mut);background:none;border:0;cursor:pointer;font-size:.9rem}
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 </style></head><body>
 <header><div class="wrap bar"><div class="logo"><i>H</i>Henyo Drive</div><div class="tag">Centralized Repository for Bawat Balangueño Henyo Programs</div>
@@ -63,6 +64,7 @@ footer{background:var(--blue);color:#fff;border-top:4px solid var(--gold);paddin
 <section class="sec" id="monitoring"><div class="wrap"><h2>Monitoring, Proposals, Reports &amp; Templates</h2><p class="sub">Quick routes to the sections above: <a href="#resources">Monitoring cards</a> · <a href="#resources">Proposals cards</a> · <a href="#storyboard">Reports analytics</a>.</p><div id="proposals"></div><div id="reports"></div></div></section>
 </main>
 <footer><div class="wrap"><h3>Henyo Drive Division Repository and Monitoring Hub</h3><p>Department of Education · SDO Balanga City</p><p><em>“Empowering schools to track, manage, and strengthen BBH initiatives through accessible digital resources and evidence-based monitoring.”</em></p><p>© 2025 Henyo Drive. All Rights Reserved.</p></div></footer>
+<div class="mo" id="fm" role="dialog" aria-modal="true" aria-labelledby="fmt"><div class="mb"><button class="mx" id="fx" aria-label="Close">×</button><div style="font-size:2.2rem">💬</div><h3 id="fmt">Before you go, share your feedback</h3><p>Help us improve Henyo Drive. It only takes a minute.</p><a class="btn" href="https://forms.cloud.microsoft/r/9Ag8xh8HiG?origin=lprLink" target="_blank" rel="noopener" id="fgo">Open Feedback Form</a><button class="ml" id="fno">Maybe later</button></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
@@ -120,5 +122,11 @@ function file(f){f&&f.arrayBuffer().then(b=>load(b,f.name))}
 dz.onclick=()=>fi.click();dz.onkeydown=e=>{if(e.key==='Enter')fi.click()};fi.onchange=()=>file(fi.files[0]);
 dz.ondragover=e=>{e.preventDefault();dz.classList.add('on')};dz.ondragleave=()=>dz.classList.remove('on');dz.ondrop=e=>{e.preventDefault();dz.classList.remove('on');file(e.dataTransfer.files[0])};
 sets.forEach(i=>document.getElementById(i).onchange=render);gs.oninput=render;
+let fbShown=false;try{fbShown=sessionStorage.getItem('hd_fb')==='1'}catch(e){}
+function showFb(){if(fbShown)return;fbShown=true;try{sessionStorage.setItem('hd_fb','1')}catch(e){}fm.classList.add('on');fgo.focus()}
+function hideFb(){fm.classList.remove('on')}
+[fx,fno,fgo].forEach(b=>b.addEventListener('click',hideFb));fm.addEventListener('click',e=>{if(e.target===fm)hideFb()});document.addEventListener('keydown',e=>{if(e.key==='Escape')hideFb()});
+document.addEventListener('mouseout',e=>{if(!e.relatedTarget&&e.clientY<=0)showFb()});
+if(matchMedia('(hover:none)').matches)setTimeout(showFb,60000);
 fillFilters();render();
 </script></body></html>
