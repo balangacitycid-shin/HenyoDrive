@@ -17,7 +17,7 @@ nav{margin-left:auto;display:flex;gap:2px;flex-wrap:wrap}nav a{color:#fff;text-d
 .hero{background:linear-gradient(135deg,#0033A0,#001f66);color:#fff;padding:64px 0;position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;right:-90px;top:-90px;width:340px;height:340px;border-radius:50%;border:44px solid rgba(212,175,55,.22)}
 .hero h2{font-size:clamp(1.9rem,5vw,3rem);max-width:700px}.hero p{max-width:620px;opacity:.9;font-size:1.08rem;margin:14px 0 26px}
-.btn{display:inline-block;background:var(--gold);color:#0b1b4d;font-weight:700;padding:13px 26px;border-radius:12px;text-decoration:none;border:0;cursor:pointer;font-size:1rem;box-shadow:0 4px 14px rgba(0,0,0,.25);transition:.2s}.btn:hover{transform:translateY(-2px)}
+.btn{display:inline-block;background:var(--gold);color:#0b1b4d;font-weight:700;padding:13px 26px;border-radius:12px;text-decoration:none;border:0;cursor:pointer;font-size:1rem;box-shadow:0 4px 14px rgba(0,0,0,.25);transition:.2s}.btn:hover{transform:translateY(-2px)}.btn.o{background:transparent;color:#fff;border:2px solid var(--gold);box-shadow:none;margin-left:10px}.btn.o:hover{background:var(--gold);color:#0b1b4d}
 section{padding:42px 0}.sec h2{font-size:1.6rem;color:var(--blue)}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .sec h2{color:var(--gold)}}
 .sub{color:var(--mut);margin:4px 0 22px}
 .search{width:100%;max-width:520px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1rem;margin-bottom:18px}
@@ -26,7 +26,7 @@ section{padding:42px 0}.sec h2{font-size:1.6rem;color:var(--blue)}@media(prefers
 a.card:hover,.card.h:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,51,160,.18);border-color:var(--gold)}
 .ico{font-size:2rem;width:54px;height:54px;border-radius:14px;background:rgba(0,51,160,.09);display:grid;place-items:center;margin-bottom:12px}
 .card h3{font-size:1.02rem}.card small{color:var(--mut)}
-.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.links a{font-size:.82rem;font-weight:600;text-decoration:none;color:var(--blue);background:rgba(212,175,55,.2);padding:5px 10px;border-radius:8px}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.links a{font-size:.82rem;font-weight:600;text-decoration:none;color:var(--gold);background:var(--blue);padding:6px 12px;border-radius:8px;border:1px solid var(--gold)}.links a:hover{background:var(--gold);color:#0b1b4d}
 .big{grid-column:span 2}@media(max-width:560px){.big{grid-column:auto}}
 .soon{border-style:dashed;opacity:.9}
 .drop{border:2px dashed var(--blue);border-radius:16px;padding:22px;text-align:center;background:var(--card);cursor:pointer;margin-bottom:18px}.drop.on{background:rgba(212,175,55,.15)}
@@ -44,9 +44,9 @@ footer{background:var(--blue);color:#fff;border-top:4px solid var(--gold);paddin
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 </style></head><body>
 <header><div class="wrap bar"><div class="logo"><i>H</i>Henyo Drive</div><div class="tag">Centralized Repository for Bawat Balangueño Henyo Programs</div>
-<nav aria-label="Main"><a href="#home">Home</a><a href="#resources">Resources</a><a href="#monitoring">Monitoring</a><a href="#proposals">Proposals</a><a href="#reports">Reports</a><a href="#templates">Templates</a></nav></div></header>
+<nav aria-label="Main"><a href="#home">Home</a><a href="#resources">Resources</a><a href="#monitoring">Monitoring</a><a href="#proposals">Proposals</a><a href="#reports">Reports</a><a href="https://forms.cloud.microsoft/r/9Ag8xh8HiG?origin=lprLink" target="_blank" rel="noopener">Feedback</a></nav></div></header>
 <main>
-<div class="hero" id="home"><div class="wrap"><h2>Welcome to Henyo Drive</h2><p>A centralized platform for organizing, monitoring, and accessing BBH documents, reports, templates, proposals, and monitoring tools.</p><a class="btn" href="#resources">Access Repository</a></div></div>
+<div class="hero" id="home"><div class="wrap"><h2>Welcome to Henyo Drive</h2><p>A centralized platform for organizing, monitoring, and accessing BBH documents, reports, templates, proposals, and monitoring tools.</p><a class="btn" href="#resources">Access Repository</a> <a class="btn o" href="https://forms.cloud.microsoft/r/9Ag8xh8HiG?origin=lprLink" target="_blank" rel="noopener">💬 Feedback Form</a></div></div>
 <section class="sec" id="resources"><div class="wrap"><h2>📁 Resource Dashboard</h2><p class="sub">Open the SharePoint folders and files of the BBH repository.</p>
 <input class="search" id="gs" type="search" placeholder="🔍 Search resources, schools, categories…" aria-label="Global search">
 <div class="grid" id="rg"></div></div></section>
@@ -60,7 +60,7 @@ footer{background:var(--blue);color:#fff;border-top:4px solid var(--gold);paddin
 <div class="card"><h3>Completion Rate</h3><div class="gauge" id="gg"><span id="gv">0%</span></div><h3 style="font-size:.95rem;margin-top:10px">School compliance</h3><div id="cmp"></div></div></div>
 <div class="card"><h3>📋 BBH Program Submissions Overview</h3><div class="tw" style="max-height:560px;overflow-y:auto"><table><thead><tr><th>#</th><th>School</th><th>Submitted</th><th>Approved</th><th>Submission rate</th></tr></thead><tbody id="lb"></tbody></table></div></div>
 </div></section>
-<section class="sec" id="monitoring"><div class="wrap"><h2>Monitoring, Proposals, Reports &amp; Templates</h2><p class="sub">Quick routes to the sections above: <a href="#resources">Monitoring cards</a> · <a href="#resources">Proposals cards</a> · <a href="#storyboard">Reports analytics</a> · <a href="#templates">Templates</a>.</p><div id="proposals"></div><div id="reports"></div></div></section>
+<section class="sec" id="monitoring"><div class="wrap"><h2>Monitoring, Proposals, Reports &amp; Templates</h2><p class="sub">Quick routes to the sections above: <a href="#resources">Monitoring cards</a> · <a href="#resources">Proposals cards</a> · <a href="#storyboard">Reports analytics</a>.</p><div id="proposals"></div><div id="reports"></div></div></section>
 </main>
 <footer><div class="wrap"><h3>Henyo Drive Division Repository and Monitoring Hub</h3><p>Department of Education · SDO Balanga City</p><p><em>“Empowering schools to track, manage, and strengthen BBH initiatives through accessible digital resources and evidence-based monitoring.”</em></p><p>© 2025 Henyo Drive. All Rights Reserved.</p></div></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -74,8 +74,7 @@ const R=[
 {i:'📚',t:'BBH Compilation 2025',l:[['Open folder',S+'f:/s/HenyoDrive/IgCFBWOl30jwSaU18TK4w6plAdjoN9Yg9DqMKr-zVNUyvsA?e=sXaEcy']]},
 {i:'📄',t:'BBH Memo',l:[['Open folder',S+'f:/s/HenyoDrive/IgCIZYyfTKdlR7iOWR2xxtlgAe9EdAfYEeMpF1_xxHr4k7g?e=FmMYX1']]},
 {i:'📈',t:'BBH Monitoring Tool',l:[['Open folder',S+'f:/s/HenyoDrive/IgB6IxyFJOZxRbuytQdv58RUAflV4sPezHanM1L1cJeADgY?e=ncLUMJ']]},
-{i:'📂',t:'Submitted Proposals',l:[['Open folder',S+'f:/s/HenyoDrive/IgDofvV4Tf2qSaUcBlsWycxFAaI9rA4lvNC5cviSTrvEY74?e=uDjsrx']]},
-{i:'📝',t:'Templates for BBH',d:'Reserved for templates and future resources',soon:1,id:'templates'}];
+{i:'📂',t:'Submitted Proposals',l:[['Open folder',S+'f:/s/HenyoDrive/IgDofvV4Tf2qSaUcBlsWycxFAaI9rA4lvNC5cviSTrvEY74?e=uDjsrx']]}];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function renderRes(q=''){q=q.toLowerCase();const m=R.filter(r=>(r.t+(r.d||'')).toLowerCase().includes(q));
 rg.innerHTML=m.map(r=>r.l?`<div class="card h${r.big?' big':''}"><div class="ico">${r.i}</div><h3>${r.i} ${esc(r.t)}</h3>${r.d?`<small>${r.d}</small>`:''}<div class="links">${r.l.map(x=>`<a href="${x[1]}" target="_blank" rel="noopener">${x[0]} ↗</a>`).join('')}</div></div>`
